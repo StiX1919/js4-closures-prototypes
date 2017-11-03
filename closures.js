@@ -16,7 +16,8 @@ function outer() {
   
   // Code Here
   
-  //Once you do that, invoke inner.
+  var inner = outer();
+  inner()
   
   //Code Here
   
@@ -52,9 +53,10 @@ function outer() {
   
     //Code Here
   
+  var callJake = callFriend('Jake')
   
   
-  
+  callJake(435-555-9248)
   
   
   
@@ -68,14 +70,21 @@ function outer() {
   /* Write a function called makeCounter that makes the following code work
   properly. */
   
-  //Code Here
+  function makeCounter(){
+
+   var num = 0
+
+    return function(){
+      return num += 1
+    }
+  }
   
-  //Uncomment this once you make your function
-  //   var count = makeCounter();
-  //   count(); // 1
-  //   count(); // 2
-  //   count(); // 3
-  //   count(); // 4
+  // Uncomment this once you make your function
+    var count = makeCounter();
+    count(); // 1
+    count(); // 2
+    count(); // 3
+    count(); // 4
   
   
   
@@ -101,12 +110,14 @@ function outer() {
   */
   
   function counterFactory(value) {
-  
-    // Code here.
-  
-  
-    return {
-
+  var num = value
+  return {
+      inc: function() {
+        return ++num
+      },
+      dec: function() {
+        return --num
+      }
     }
   }
   
@@ -141,11 +152,13 @@ function outer() {
   
     var welcomeText = 'You\'re doing awesome, keep it up ';
   
-    // code message function here.
+    return function message(){
+      return `${welcomeText}${firstname} ${lastname}.`
+    }
   
   
     //Uncommment this to return the value of your message function
-    //return message;
+    return message;
   
   }
   
@@ -183,8 +196,12 @@ function outer() {
     // Anything that is being returned is made public and can be invoked from
     // outside our lexical scope
     return {
-      // Code here.
+      publicMethod: function() {
+        return privateMethod()
+
+      }
     };
+    publicMethod()
   
   })();
   
@@ -202,7 +219,12 @@ function outer() {
     var secret = 143;
 
     return {
-      // Code here
+      addToSecret: (num) => {
+        return secret += num
+      },
+      takeAwayFromSecret: (num) => {
+        return secret -= num
+      }
     }
   }
   
@@ -229,11 +251,13 @@ function outer() {
    */
   
   function timeOutCounter() {
-    for (var i = 0; i <= 5; i++) {
+    for (let i = 0; i <= 5; i++) {
       setTimeout(function() {
           console.log(i)
       }, i * 1000)
+      
     }
+    
   }
   timeOutCounter();
   
